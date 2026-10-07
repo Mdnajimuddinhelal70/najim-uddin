@@ -1,254 +1,446 @@
 "use client";
 
-import { ArrowDown, ArrowRight, Mail, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Check,
+  Code2,
+  Globe2,
+  Layers3,
+  Mail,
+  Sparkles,
+} from "lucide-react";
 import Link from "next/link";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const technologies = ["Next.js", "TypeScript", "React", "Node.js", "MongoDB"];
 
+const stats = [
+  {
+    value: "01+",
+    label: "Years Learning",
+  },
+  {
+    value: "10+",
+    label: "Projects Built",
+  },
+  {
+    value: "100%",
+    label: "Passion",
+  },
+];
+
 export default function HeroSection() {
   return (
-    <section className="relative min-h-[calc(100vh-80px)] overflow-hidden bg-slate-950 text-white">
-      {/* Background Effects */}
-      <div className="absolute inset-0">
-        <div className="absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-violet-600/20 blur-[140px]" />
-        <div className="absolute -left-40 bottom-0 h-[400px] w-[400px] rounded-full bg-cyan-500/10 blur-[120px]" />
-        <div className="absolute -right-40 top-1/3 h-[400px] w-[400px] rounded-full bg-fuchsia-500/10 blur-[120px]" />
+    <section className="relative isolate min-h-screen overflow-hidden bg-[#050505] text-white">
+      {/* =====================================================
+          BACKGROUND
+      ====================================================== */}
+
+      <div className="pointer-events-none absolute inset-0">
+        {/* Main radial glow */}
+        <div className="absolute left-1/2 top-[-300px] h-[700px] w-[900px] -translate-x-1/2 rounded-full bg-violet-600/[0.13] blur-[180px]" />
+
+        {/* Bottom glow */}
+        <div className="absolute bottom-[-250px] left-1/2 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-cyan-500/[0.07] blur-[180px]" />
+
+        {/* Side glow */}
+        <div className="absolute right-[-200px] top-[30%] h-[500px] w-[500px] rounded-full bg-fuchsia-500/[0.07] blur-[170px]" />
       </div>
 
       {/* Grid */}
       <div
-        className="absolute inset-0 opacity-[0.06]"
+        className="pointer-events-none absolute inset-0 opacity-[0.035]"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
+            "linear-gradient(rgba(255,255,255,.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.8) 1px, transparent 1px)",
+          backgroundSize: "70px 70px",
         }}
       />
 
-      {/* Content */}
-      <div className="relative mx-auto flex min-h-[calc(100vh-80px)] max-w-7xl items-center px-6 py-20 lg:px-8">
-        <div className="grid w-full items-center gap-16 lg:grid-cols-[1.15fr_0.85fr]">
-          {/* Left Content */}
-          <div className="max-w-3xl">
-            {/* Availability Badge */}
-            <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-4 py-2 text-sm text-slate-300 backdrop-blur-md">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400" />
-              </span>
-              Available for opportunities
-            </div>
+      {/* Top center light */}
+      <div className="pointer-events-none absolute left-1/2 top-0 h-px w-[600px] -translate-x-1/2 bg-gradient-to-r from-transparent via-violet-400/60 to-transparent" />
 
-            {/* Small Intro */}
-            <div className="mb-5 flex items-center gap-3 text-sm font-medium uppercase tracking-[0.25em] text-violet-300">
-              <Sparkles className="h-4 w-4" />
-              Full Stack Web Developer
-            </div>
+      {/* =====================================================
+          CONTENT
+      ====================================================== */}
+
+      <div className="relative mx-auto flex min-h-screen max-w-7xl items-center px-6 py-28 sm:px-8 lg:px-10">
+        <div className="grid w-full items-center gap-20 lg:grid-cols-[1.05fr_0.95fr]">
+          {/* =================================================
+              LEFT CONTENT
+          ================================================== */}
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.8,
+              ease: "easeOut",
+            }}
+          >
+            {/* Eyebrow */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15, duration: 0.5 }}
+              className="mb-7 flex items-center gap-3"
+            >
+              <span className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-xs font-medium text-slate-300 backdrop-blur-xl">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute h-full w-full animate-ping rounded-full bg-emerald-400 opacity-70" />
+                  <span className="relative h-2 w-2 rounded-full bg-emerald-400" />
+                </span>
+                Available for new opportunities
+              </span>
+            </motion.div>
 
             {/* Heading */}
-            <h1 className="text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
-              I build digital
-              <span className="block bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">
-                experiences
-              </span>
-              that matter.
-            </h1>
+            <div className="max-w-4xl">
+              <p className="mb-3 text-sm font-medium uppercase tracking-[0.3em] text-violet-400">
+                Full Stack Web Developer
+              </p>
+
+              <h1 className="text-[clamp(3.5rem,8vw,6.8rem)] font-black leading-[0.88] tracking-[-0.055em]">
+                Building
+                <span className="block bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">
+                  Digital
+                </span>
+                <span className="block text-slate-100">Experiences.</span>
+              </h1>
+            </div>
 
             {/* Description */}
-            <p className="mt-7 max-w-2xl text-base leading-8 text-slate-400 sm:text-lg">
-              I&apos;m Najim Uddin Helal, a Full Stack Web Developer focused on
-              building modern, scalable, and user-friendly web applications with
-              clean code and thoughtful user experiences.
+            <p className="mt-8 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg sm:leading-8">
+              I design and develop modern web applications that combine
+              thoughtful user experiences, clean architecture and reliable
+              performance.
             </p>
 
-            {/* Tech Stack */}
-            <div className="mt-7 flex flex-wrap items-center gap-2.5">
-              {technologies.map((technology) => (
-                <span
+            {/* Technologies */}
+            <div className="mt-8 flex flex-wrap items-center gap-2">
+              {technologies.map((technology, index) => (
+                <motion.span
                   key={technology}
-                  className="rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-sm text-slate-300 transition-colors duration-300 hover:border-violet-400/40 hover:bg-violet-400/10 hover:text-white"
+                  initial={{
+                    opacity: 0,
+                    y: 8,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  transition={{
+                    delay: 0.3 + index * 0.05,
+                    duration: 0.4,
+                  }}
+                  className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3.5 py-2 text-xs font-medium text-slate-400 transition duration-300 hover:border-violet-400/30 hover:bg-violet-500/[0.08] hover:text-white"
                 >
                   {technology}
-                </span>
+                </motion.span>
               ))}
             </div>
 
             {/* CTA */}
-            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+            <div className="mt-9 flex flex-wrap items-center gap-3">
               <Link
                 href="#projects"
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-slate-950 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-white/10"
+                className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-black transition duration-300 hover:scale-[1.03] hover:bg-slate-100 sm:px-7 sm:py-4"
               >
                 Explore My Work
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                <ArrowRight
+                  size={17}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
               </Link>
 
               <Link
                 href="#contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-white/30 hover:bg-white/[0.08]"
+                className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-6 py-3.5 text-sm font-semibold text-slate-200 backdrop-blur-xl transition duration-300 hover:border-white/20 hover:bg-white/[0.08] sm:px-7 sm:py-4"
               >
                 Let&apos;s Talk
-                <Mail className="h-4 w-4" />
+                <Mail
+                  size={17}
+                  className="transition-transform duration-300 group-hover:rotate-6"
+                />
               </Link>
             </div>
 
-            {/* Social Links */}
-            <div className="mt-10 flex items-center gap-3">
-              <span className="mr-2 text-xs uppercase tracking-[0.2em] text-slate-500">
-                Find me
-              </span>
-
+            {/* Socials */}
+            <div className="mt-8 flex items-center gap-3">
               <Link
-                href="https://github.com/"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
                 aria-label="GitHub"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-400 transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
+                className="group rounded-full border border-white/10 bg-white/[0.03] p-3 text-slate-400 transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
               >
-                <FaGithub className="h-4 w-4" />
+                <FaGithub
+                  size={18}
+                  className="transition-transform duration-300 group-hover:scale-110"
+                />
               </Link>
 
               <Link
-                href="https://linkedin.com/"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
                 aria-label="LinkedIn"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-400 transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
+                className="group rounded-full border border-white/10 bg-white/[0.03] p-3 text-slate-400 transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
               >
-                <FaLinkedin className="h-4 w-4" />
+                <FaLinkedin
+                  size={18}
+                  className="transition-transform duration-300 group-hover:scale-110"
+                />
               </Link>
+
+              <span className="ml-2 h-px w-10 bg-white/10" />
+
+              <span className="text-xs text-slate-600">
+                Based in Bangladesh
+              </span>
             </div>
-          </div>
 
-          {/* Right Visual */}
-          <div className="relative hidden lg:block">
-            <div className="relative mx-auto aspect-square max-w-[460px]">
-              {/* Outer Glow */}
-              <div className="absolute inset-8 rounded-[3rem] bg-gradient-to-br from-violet-500/20 via-fuchsia-500/10 to-cyan-400/20 blur-3xl" />
+            {/* Stats */}
+            <div className="mt-10 flex flex-wrap items-center gap-7 border-t border-white/[0.07] pt-7">
+              {stats.map((stat) => (
+                <div key={stat.label}>
+                  <p className="text-xl font-bold text-white">{stat.value}</p>
 
-              {/* Main Card */}
-              <div className="absolute inset-10 rotate-3 rounded-[2rem] border border-white/10 bg-white/[0.04] shadow-2xl backdrop-blur-xl transition-transform duration-700 hover:rotate-0">
-                <div className="flex h-full flex-col justify-between p-7">
-                  {/* Browser Header */}
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <span className="h-3 w-3 rounded-full bg-red-400/80" />
-                      <span className="h-3 w-3 rounded-full bg-yellow-400/80" />
-                      <span className="h-3 w-3 rounded-full bg-green-400/80" />
+                  <p className="mt-1 text-[11px] uppercase tracking-wider text-slate-600">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
 
-                      <div className="ml-3 h-7 flex-1 rounded-md bg-white/[0.05]" />
-                    </div>
+          {/* =================================================
+              RIGHT VISUAL
+          ================================================== */}
 
-                    {/* Code-like Content */}
-                    <div className="mt-10 space-y-4 font-mono text-sm">
-                      <div>
-                        <span className="text-violet-400">const</span>{" "}
-                        <span className="text-cyan-300">developer</span>{" "}
-                        <span className="text-slate-500">=</span>{" "}
-                        <span className="text-emerald-300">
-                          &quot;Najim&quot;
-                        </span>
-                      </div>
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: 50,
+              scale: 0.95,
+            }}
+            animate={{
+              opacity: 1,
+              x: 0,
+              scale: 1,
+            }}
+            transition={{
+              duration: 1,
+              delay: 0.2,
+              ease: "easeOut",
+            }}
+            className="relative hidden lg:block"
+          >
+            {/* Large Glow */}
+            <div className="absolute -inset-16 rounded-full bg-violet-500/[0.08] blur-[100px]" />
 
-                      <div className="pl-5">
-                        <span className="text-violet-400">skills</span>
-                        <span className="text-slate-500">:</span>{" "}
-                        <span className="text-amber-300">[</span>
-                      </div>
+            {/* Decorative Circle */}
+            <div className="absolute left-1/2 top-1/2 h-[470px] w-[470px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/[0.04]" />
 
-                      <div className="pl-10 text-slate-400">
-                        &quot;Next.js&quot;,
-                      </div>
+            <div className="absolute left-1/2 top-1/2 h-[390px] w-[390px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-violet-400/[0.12]" />
 
-                      <div className="pl-10 text-slate-400">
-                        &quot;TypeScript&quot;,
-                      </div>
-
-                      <div className="pl-10 text-slate-400">
-                        &quot;Node.js&quot;,
-                      </div>
-
-                      <div className="pl-10 text-slate-400">
-                        &quot;MongoDB&quot;
-                      </div>
-
-                      <div className="pl-5 text-amber-300">]</div>
-
-                      <div className="pt-3">
-                        <span className="text-violet-400">return</span>{" "}
-                        <span className="text-cyan-300">
-                          buildSomethingAmazing
-                        </span>
-                        <span className="text-slate-300">()</span>
-                      </div>
-                    </div>
+            {/* Main Card */}
+            <motion.div
+              animate={{
+                y: [0, -10, 0],
+              }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="relative mx-auto w-full max-w-[470px]"
+            >
+              <div className="relative overflow-hidden rounded-[32px] border border-white/[0.1] bg-[#0b0d14]/90 shadow-[0_40px_120px_rgba(0,0,0,0.55)] backdrop-blur-2xl">
+                {/* Card top */}
+                <div className="flex items-center justify-between border-b border-white/[0.07] px-6 py-5">
+                  <div className="flex items-center gap-2">
+                    <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/80" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-green-400/80" />
                   </div>
 
-                  {/* Bottom */}
-                  <div className="flex items-end justify-between">
+                  <span className="text-[11px] font-medium text-slate-600">
+                    portfolio.tsx
+                  </span>
+
+                  <Code2 size={16} className="text-violet-400" />
+                </div>
+
+                {/* Main card */}
+                <div className="p-7">
+                  {/* Profile */}
+                  <div className="flex items-center gap-4">
+                    <div className="relative">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500 to-cyan-500 text-xl font-black shadow-lg shadow-violet-500/20">
+                        NH
+                      </div>
+
+                      <span className="absolute -bottom-1 -right-1 h-4 w-4 rounded-full border-2 border-[#0b0d14] bg-emerald-400" />
+                    </div>
+
                     <div>
-                      <p className="text-xs uppercase tracking-widest text-slate-500">
-                        Current focus
+                      <h2 className="text-lg font-bold text-white">
+                        Najim Uddin Helal
+                      </h2>
+
+                      <p className="mt-1 text-sm text-slate-500">
+                        Full Stack Web Developer
                       </p>
-                      <p className="mt-1 text-sm font-medium text-slate-200">
-                        Full Stack Development
+                    </div>
+                  </div>
+
+                  {/* Divider */}
+                  <div className="my-7 h-px bg-white/[0.06]" />
+
+                  {/* Code */}
+                  <div className="space-y-3 font-mono text-[12px] leading-6 sm:text-[13px]">
+                    <div>
+                      <span className="text-violet-400">const</span>{" "}
+                      <span className="text-cyan-300">mindset</span>{" "}
+                      <span className="text-slate-600">=</span>{" "}
+                      <span className="text-yellow-300">{"{"}</span>
+                    </div>
+
+                    <div className="pl-5">
+                      <span className="text-slate-500">curiosity:</span>{" "}
+                      <span className="text-emerald-300">true</span>
+                      <span className="text-slate-600">,</span>
+                    </div>
+
+                    <div className="pl-5">
+                      <span className="text-slate-500">cleanCode:</span>{" "}
+                      <span className="text-emerald-300">true</span>
+                      <span className="text-slate-600">,</span>
+                    </div>
+
+                    <div className="pl-5">
+                      <span className="text-slate-500">problemSolving:</span>{" "}
+                      <span className="text-emerald-300">true</span>
+                      <span className="text-slate-600">,</span>
+                    </div>
+
+                    <div className="pl-5">
+                      <span className="text-slate-500">learning:</span>{" "}
+                      <span className="text-emerald-300">
+                        &quot;always&quot;
+                      </span>
+                      <span className="text-slate-600">,</span>
+                    </div>
+
+                    <div>
+                      <span className="text-yellow-300">{"}"}</span>
+                    </div>
+                  </div>
+
+                  {/* Skills */}
+                  <div className="mt-7 grid grid-cols-2 gap-3">
+                    <div className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-4">
+                      <Layers3 size={18} className="text-violet-400" />
+
+                      <p className="mt-3 text-xs font-semibold text-white">
+                        Scalable
+                      </p>
+
+                      <p className="mt-1 text-[11px] text-slate-600">
+                        Architecture
                       </p>
                     </div>
 
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-cyan-400 shadow-lg shadow-violet-500/20">
-                      <ArrowRight className="h-5 w-5 -rotate-45 text-white" />
+                    <div className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-4">
+                      <Globe2 size={18} className="text-cyan-400" />
+
+                      <p className="mt-3 text-xs font-semibold text-white">
+                        Modern
+                      </p>
+
+                      <p className="mt-1 text-[11px] text-slate-600">
+                        Web Experience
+                      </p>
                     </div>
                   </div>
+
+                  {/* Bottom status */}
+                  <div className="mt-5 flex items-center justify-between rounded-2xl border border-emerald-400/10 bg-emerald-400/[0.035] px-4 py-3">
+                    <div className="flex items-center gap-2">
+                      <div className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-400/10">
+                        <Check size={12} className="text-emerald-400" />
+                      </div>
+
+                      <span className="text-[11px] text-slate-400">
+                        Ready to build
+                      </span>
+                    </div>
+
+                    <ArrowUpRight size={15} className="text-slate-600" />
+                  </div>
                 </div>
               </div>
 
-              {/* Floating Card 1 */}
-              <div className="absolute -right-2 top-16 rounded-2xl border border-white/10 bg-slate-900/80 px-4 py-3 shadow-xl backdrop-blur-xl">
+              {/* Floating card - top */}
+              <motion.div
+                animate={{
+                  y: [0, 8, 0],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute -right-7 -top-7 rounded-2xl border border-white/10 bg-[#10131c]/90 px-4 py-3 shadow-2xl backdrop-blur-xl"
+              >
                 <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-violet-500/15 text-violet-300">
-                    &lt;/&gt;
+                  <div className="rounded-xl bg-violet-500/10 p-2">
+                    <Sparkles size={16} className="text-violet-400" />
                   </div>
 
                   <div>
-                    <p className="text-xs text-slate-500">Building</p>
-                    <p className="text-sm font-semibold text-white">
-                      Scalable Apps
+                    <p className="text-[10px] uppercase tracking-wider text-slate-600">
+                      Quality
+                    </p>
+
+                    <p className="text-xs font-semibold text-slate-200">
+                      Crafted with care
                     </p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
-              {/* Floating Card 2 */}
-              <div className="absolute -bottom-2 left-0 rounded-2xl border border-white/10 bg-slate-900/80 px-4 py-3 shadow-xl backdrop-blur-xl">
+              {/* Floating card - bottom */}
+              <motion.div
+                animate={{
+                  y: [0, -7, 0],
+                }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute -bottom-7 -left-7 rounded-2xl border border-white/10 bg-[#10131c]/90 px-4 py-3 shadow-2xl backdrop-blur-xl"
+              >
                 <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-cyan-500/15 text-cyan-300">
-                    ✦
+                  <div className="rounded-xl bg-cyan-500/10 p-2">
+                    <Code2 size={16} className="text-cyan-400" />
                   </div>
 
                   <div>
-                    <p className="text-xs text-slate-500">Passion</p>
-                    <p className="text-sm font-semibold text-white">
-                      Clean &amp; Modern UI
+                    <p className="text-[10px] uppercase tracking-wider text-slate-600">
+                      Stack
+                    </p>
+
+                    <p className="text-xs font-semibold text-slate-200">
+                      Modern Technologies
                     </p>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
+              </motion.div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
-
-      {/* Scroll Indicator */}
-      <Link
-        href="#about"
-        aria-label="Scroll to About section"
-        className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-slate-500 transition-colors hover:text-white md:flex"
-      >
-        <span className="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
-
-        <ArrowDown className="h-4 w-4 animate-bounce" />
-      </Link>
     </section>
   );
 }

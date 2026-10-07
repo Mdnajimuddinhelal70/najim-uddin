@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, type Variants } from "framer-motion";
 import {
   ArrowRight,
   BriefcaseBusiness,
@@ -53,6 +54,120 @@ const focusAreas = [
   "Clean & Maintainable Architecture",
 ];
 
+/* --------------------------------
+   Animation Variants
+--------------------------------- */
+
+const headingVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: "easeOut",
+    },
+  },
+};
+
+const timelineContainerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const timelineItemVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 45,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.65,
+      ease: "easeOut",
+    },
+  },
+};
+
+const iconVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    scale: 0.6,
+    rotate: -20,
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    rotate: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
+
+const focusContainerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
+};
+
+const focusItemVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    x: 20,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.4,
+      ease: "easeOut",
+    },
+  },
+};
+
+const focusContentVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    x: -30,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.7,
+      ease: "easeOut",
+    },
+  },
+};
+
+const bottomStatementVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
+
 export default function JourneySection() {
   return (
     <section
@@ -62,16 +177,26 @@ export default function JourneySection() {
       {/* Background Glow */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-0 top-1/4 h-80 w-80 rounded-full bg-violet-500/10 blur-[120px]" />
+
         <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-cyan-500/10 blur-[120px]" />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mx-auto max-w-3xl text-center">
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300 backdrop-blur-xl">
+        <motion.div
+          variants={headingVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="mx-auto max-w-3xl text-center"
+        >
+          <motion.div
+            whileHover={{ scale: 1.04 }}
+            className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300 backdrop-blur-xl"
+          >
             <Sparkles className="h-4 w-4 text-violet-400" />
             My Journey
-          </div>
+          </motion.div>
 
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
             From{" "}
@@ -85,7 +210,7 @@ export default function JourneySection() {
             A journey of continuous learning, practical projects, and becoming a
             better problem solver through real development work.
           </p>
-        </div>
+        </motion.div>
 
         {/* Timeline */}
         <div className="mx-auto mt-16 max-w-4xl">
@@ -93,20 +218,34 @@ export default function JourneySection() {
             {/* Timeline Line */}
             <div className="absolute bottom-0 left-[23px] top-0 w-px bg-gradient-to-b from-violet-500/50 via-white/10 to-cyan-500/50 sm:left-1/2 sm:-translate-x-1/2" />
 
-            <div className="space-y-12">
+            <motion.div
+              variants={timelineContainerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+              className="space-y-12"
+            >
               {journey.map((item, index) => {
                 const Icon = item.icon;
                 const isRight = index % 2 !== 0;
 
                 return (
-                  <div
-                    key={item.title}
+                  <motion.div
+                    key={`${item.year}-${item.title}`}
+                    variants={timelineItemVariants}
                     className="relative grid sm:grid-cols-2 sm:gap-12"
                   >
                     {/* Mobile Icon */}
-                    <div className="absolute left-0 top-0 z-10 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-slate-900 shadow-lg shadow-black/20 sm:hidden">
+                    <motion.div
+                      variants={iconVariants}
+                      whileHover={{
+                        scale: 1.08,
+                        rotate: 5,
+                      }}
+                      className="absolute left-0 top-0 z-10 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-slate-900 shadow-lg shadow-black/20 sm:hidden"
+                    >
                       <Icon className="h-5 w-5 text-violet-400" />
-                    </div>
+                    </motion.div>
 
                     {/* Left Content */}
                     <div
@@ -122,7 +261,7 @@ export default function JourneySection() {
 
                       {isRight && (
                         <div className="hidden sm:block">
-                          <div className="text-sm font-semibold text-slate-600">
+                          <div className="pt-3 text-sm font-semibold text-slate-600">
                             {item.year}
                           </div>
                         </div>
@@ -130,9 +269,16 @@ export default function JourneySection() {
                     </div>
 
                     {/* Center Icon */}
-                    <div className="absolute left-1/2 top-0 z-10 hidden h-12 w-12 -translate-x-1/2 items-center justify-center rounded-2xl border border-white/10 bg-slate-900 shadow-xl shadow-violet-950/20 sm:flex">
+                    <motion.div
+                      variants={iconVariants}
+                      whileHover={{
+                        scale: 1.12,
+                        rotate: 6,
+                      }}
+                      className="absolute left-1/2 top-0 z-10 hidden h-12 w-12 -translate-x-1/2 items-center justify-center rounded-2xl border border-white/10 bg-slate-900 shadow-xl shadow-violet-950/20 sm:flex"
+                    >
                       <Icon className="h-5 w-5 text-violet-400" />
-                    </div>
+                    </motion.div>
 
                     {/* Right Content */}
                     <div
@@ -145,7 +291,7 @@ export default function JourneySection() {
                       {isRight ? (
                         <JourneyCard item={item} Icon={Icon} align="left" />
                       ) : (
-                        <div className="text-sm font-semibold text-slate-600">
+                        <div className="pt-3 text-sm font-semibold text-slate-600">
                           {item.year}
                         </div>
                       )}
@@ -155,24 +301,35 @@ export default function JourneySection() {
                     <div className="pl-16 sm:hidden">
                       <JourneyCard item={item} Icon={Icon} align="left" />
                     </div>
-                  </div>
+                  </motion.div>
                 );
               })}
-            </div>
+            </motion.div>
           </div>
         </div>
 
         {/* Current Focus */}
-        <div className="mx-auto mt-24 max-w-5xl">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mx-auto mt-24 max-w-5xl"
+        >
           <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-7 backdrop-blur-xl sm:p-10">
             <div className="absolute -right-20 -top-20 h-60 w-60 rounded-full bg-violet-500/10 blur-[100px]" />
 
             <div className="relative grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
               {/* Heading */}
-              <div>
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl border border-violet-400/20 bg-violet-400/10">
+              <motion.div variants={focusContentVariants}>
+                <motion.div
+                  whileHover={{
+                    scale: 1.08,
+                    rotate: 4,
+                  }}
+                  className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl border border-violet-400/20 bg-violet-400/10"
+                >
                   <Rocket className="h-5 w-5 text-violet-400" />
-                </div>
+                </motion.div>
 
                 <h3 className="text-2xl font-bold text-white sm:text-3xl">
                   What I&apos;m Focused On
@@ -182,37 +339,55 @@ export default function JourneySection() {
                   My goal is to keep improving as a developer by working on
                   meaningful projects and solving increasingly complex problems.
                 </p>
-              </div>
+              </motion.div>
 
               {/* Focus Areas */}
-              <div className="grid gap-3 sm:grid-cols-2">
+              <motion.div
+                variants={focusContainerVariants}
+                className="grid gap-3 sm:grid-cols-2"
+              >
                 {focusAreas.map((area) => (
-                  <div
+                  <motion.div
                     key={area}
-                    className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 transition hover:border-violet-400/20 hover:bg-white/[0.05]"
+                    variants={focusItemVariants}
+                    whileHover={{
+                      x: 4,
+                      borderColor: "rgba(167, 139, 250, 0.2)",
+                    }}
+                    className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 transition-colors duration-300 hover:bg-white/[0.05]"
                   >
                     <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-violet-400/10">
-                      <ArrowRight className="h-3.5 w-3.5 text-violet-400 transition-transform group-hover:translate-x-0.5" />
+                      <ArrowRight className="h-3.5 w-3.5 text-violet-400 transition-transform duration-300 group-hover:translate-x-0.5" />
                     </span>
 
                     <span className="text-sm text-slate-300">{area}</span>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Bottom Statement */}
-        <div className="mt-16 text-center">
+        <motion.div
+          variants={bottomStatementVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+          className="mt-16 text-center"
+        >
           <p className="text-sm text-slate-500">
             Still learning. Still building. Still moving forward.
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 }
+
+/* --------------------------------
+   Journey Card
+--------------------------------- */
 
 function JourneyCard({
   item,
@@ -224,8 +399,14 @@ function JourneyCard({
   align: "left" | "right";
 }) {
   return (
-    <div
-      className={`group rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-violet-400/20 hover:bg-white/[0.05] ${
+    <motion.div
+      whileHover={{
+        y: -5,
+      }}
+      transition={{
+        duration: 0.25,
+      }}
+      className={`group rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-xl transition-colors duration-300 hover:border-violet-400/20 hover:bg-white/[0.05] ${
         align === "right" ? "text-right" : ""
       }`}
     >
@@ -248,9 +429,15 @@ function JourneyCard({
           align === "right" ? "flex-row-reverse" : ""
         }`}
       >
-        <div className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 sm:flex">
+        <motion.div
+          whileHover={{
+            scale: 1.08,
+            rotate: 5,
+          }}
+          className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 sm:flex"
+        >
           <Icon className="h-4 w-4 text-violet-400" />
-        </div>
+        </motion.div>
 
         <div>
           <h3 className="text-lg font-semibold text-white">{item.title}</h3>
@@ -260,6 +447,6 @@ function JourneyCard({
           </p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

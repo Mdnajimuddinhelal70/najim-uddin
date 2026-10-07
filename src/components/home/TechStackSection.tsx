@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, type Variants } from "framer-motion";
 import {
   Braces,
   Cloud,
@@ -180,19 +181,153 @@ const workflow = [
   },
 ];
 
+/* --------------------------------
+   Animation Variants
+--------------------------------- */
+
+const sectionVariants: Variants = {
+  hidden: {
+    opacity: 0,
+  },
+
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+    },
+  },
+};
+
+const headingVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+  },
+
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: "easeOut",
+    },
+  },
+};
+
+const categoryContainerVariants: Variants = {
+  hidden: {},
+
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+};
+
+const categoryVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 35,
+  },
+
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
+
+const technologyContainerVariants: Variants = {
+  hidden: {},
+
+  visible: {
+    transition: {
+      staggerChildren: 0.07,
+    },
+  },
+};
+
+const technologyVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    scale: 0.94,
+    y: 12,
+  },
+
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      duration: 0.4,
+      ease: "easeOut",
+    },
+  },
+};
+
+const workflowContainerVariants: Variants = {
+  hidden: {},
+
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const workflowVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 25,
+  },
+
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
+
+const statementVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 25,
+  },
+
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
+
 export default function TechStackSection() {
   return (
-    <section
+    <motion.section
       id="skills"
+      variants={sectionVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.08 }}
       className="relative overflow-hidden bg-slate-950 py-24 text-white sm:py-32"
     >
-      {/* Background */}
+      {/* Background Glow */}
       <div className="absolute inset-0">
         <div className="absolute left-1/4 top-0 h-[400px] w-[400px] rounded-full bg-cyan-500/10 blur-[140px]" />
+
         <div className="absolute bottom-0 right-1/4 h-[450px] w-[450px] rounded-full bg-violet-500/10 blur-[150px]" />
       </div>
 
-      {/* Grid */}
+      {/* Grid Background */}
       <div
         className="absolute inset-0 opacity-[0.035]"
         style={{
@@ -203,8 +338,17 @@ export default function TechStackSection() {
       />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-        {/* Heading */}
-        <div className="mx-auto max-w-3xl text-center">
+        {/* --------------------------------
+            Heading
+        --------------------------------- */}
+
+        <motion.div
+          variants={headingVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="mx-auto max-w-3xl text-center"
+        >
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/5 px-4 py-2 text-xs font-medium uppercase tracking-[0.2em] text-cyan-300">
             <Terminal className="h-3.5 w-3.5" />
             Tech Stack
@@ -221,19 +365,30 @@ export default function TechStackSection() {
             A collection of technologies I use to design, develop, connect, and
             deploy modern full-stack web applications.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Tech Categories */}
-        <div className="mt-16 grid gap-6 lg:grid-cols-2">
+        {/* --------------------------------
+            Tech Categories
+        --------------------------------- */}
+
+        <motion.div
+          variants={categoryContainerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.12 }}
+          className="mt-16 grid gap-6 lg:grid-cols-2"
+        >
           {techStack.map((stack) => {
             const CategoryIcon = stack.icon;
 
             return (
-              <div
+              <motion.div
                 key={stack.category}
+                variants={categoryVariants}
                 className="group rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-white/15 hover:bg-white/[0.05] sm:p-7"
               >
                 {/* Category Header */}
+
                 <div className="flex items-start justify-between gap-5">
                   <div className="flex items-start gap-4">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/[0.05] text-cyan-300 ring-1 ring-white/10 transition-all duration-300 group-hover:bg-cyan-400/10 group-hover:text-cyan-200">
@@ -257,10 +412,18 @@ export default function TechStackSection() {
                 </div>
 
                 {/* Technologies */}
-                <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-3">
+
+                <motion.div
+                  variants={technologyContainerVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.2 }}
+                  className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-3"
+                >
                   {stack.technologies.map((technology) => (
-                    <div
+                    <motion.div
                       key={technology.name}
+                      variants={technologyVariants}
                       className="group/tech flex items-center gap-3 rounded-xl border border-white/10 bg-black/10 p-3 transition-all duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05]"
                     >
                       <div
@@ -278,16 +441,25 @@ export default function TechStackSection() {
                           {technology.level}
                         </p>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
-        {/* Workflow */}
-        <div className="mt-20">
+        {/* --------------------------------
+            Workflow
+        --------------------------------- */}
+
+        <motion.div
+          variants={headingVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mt-20"
+        >
           <div className="mx-auto max-w-2xl text-center">
             <div className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-violet-300">
               <GitBranch className="h-3.5 w-3.5" />
@@ -301,18 +473,26 @@ export default function TechStackSection() {
 
           <div className="relative mt-10">
             {/* Connecting Line */}
+
             <div className="absolute left-0 right-0 top-8 hidden h-px bg-gradient-to-r from-transparent via-white/10 to-transparent lg:block" />
 
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <motion.div
+              variants={workflowContainerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
+            >
               {workflow.map((item) => {
                 const WorkflowIcon = item.icon;
 
                 return (
-                  <div
+                  <motion.div
                     key={item.number}
+                    variants={workflowVariants}
                     className="group relative rounded-2xl border border-white/10 bg-white/[0.025] p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-violet-400/20 hover:bg-white/[0.04]"
                   >
-                    <div className="relative mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-slate-950 text-violet-300 shadow-xl">
+                    <div className="relative mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-slate-950 text-violet-300 shadow-xl transition-transform duration-300 group-hover:scale-105">
                       <WorkflowIcon className="h-5 w-5" />
 
                       <span className="absolute -right-2 -top-2 flex h-6 min-w-6 items-center justify-center rounded-full border border-slate-800 bg-violet-500 px-1.5 text-[9px] font-bold text-white">
@@ -327,15 +507,24 @@ export default function TechStackSection() {
                     <p className="mt-2 text-xs leading-6 text-slate-500">
                       {item.description}
                     </p>
-                  </div>
+                  </motion.div>
                 );
               })}
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Bottom Statement */}
-        <div className="mt-16 flex flex-col items-center justify-between gap-5 rounded-2xl border border-white/10 bg-white/[0.025] p-6 text-center sm:flex-row sm:text-left">
+        {/* --------------------------------
+            Bottom Statement
+        --------------------------------- */}
+
+        <motion.div
+          variants={statementVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="mt-16 flex flex-col items-center justify-between gap-5 rounded-2xl border border-white/10 bg-white/[0.025] p-6 text-center sm:flex-row sm:text-left"
+        >
           <div className="flex items-center gap-4">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500/20 to-cyan-500/20 text-violet-300">
               <Sparkles className="h-5 w-5" />
@@ -356,8 +545,8 @@ export default function TechStackSection() {
           <span className="whitespace-nowrap text-xs font-medium uppercase tracking-[0.15em] text-slate-600">
             Build • Learn • Improve
           </span>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, type Variants } from "framer-motion";
 import {
   ArrowUpRight,
   Blocks,
@@ -73,21 +74,184 @@ const principles = [
   "Continuous improvement",
 ];
 
+/* --------------------------------
+   Animation Variants
+--------------------------------- */
+
+const headingVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+  },
+
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: "easeOut",
+    },
+  },
+};
+
+const capabilitiesContainerVariants: Variants = {
+  hidden: {},
+
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const capabilityVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 35,
+    scale: 0.97,
+  },
+
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.55,
+      ease: "easeOut",
+    },
+  },
+};
+
+const technologyContainerVariants: Variants = {
+  hidden: {},
+
+  visible: {
+    transition: {
+      staggerChildren: 0.06,
+    },
+  },
+};
+
+const technologyVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    scale: 0.9,
+    y: 8,
+  },
+
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      duration: 0.35,
+      ease: "easeOut",
+    },
+  },
+};
+
+const philosophyVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 35,
+  },
+
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.65,
+      ease: "easeOut",
+    },
+  },
+};
+
+const philosophyContentVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    x: -30,
+  },
+
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
+
+const principlesContainerVariants: Variants = {
+  hidden: {},
+
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
+};
+
+const principleVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    x: 15,
+  },
+
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.4,
+      ease: "easeOut",
+    },
+  },
+};
+
+const ctaVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 25,
+  },
+
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
+
 export default function WhatIDoSection() {
   return (
     <section
       id="services"
       className="relative overflow-hidden bg-slate-950 py-24 text-white sm:py-32"
     >
-      {/* Background */}
+      {/* --------------------------------
+          Background
+      --------------------------------- */}
+
       <div className="absolute inset-0">
         <div className="absolute left-0 top-1/3 h-[450px] w-[450px] rounded-full bg-fuchsia-500/10 blur-[150px]" />
-        <div className="absolute right-0 bottom-0 h-[450px] w-[450px] rounded-full bg-cyan-500/10 blur-[150px]" />
+
+        <div className="absolute bottom-0 right-0 h-[450px] w-[450px] rounded-full bg-cyan-500/10 blur-[150px]" />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-        {/* Heading */}
-        <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+        {/* --------------------------------
+            Heading
+        --------------------------------- */}
+
+        <motion.div
+          variants={headingVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end"
+        >
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-fuchsia-400/20 bg-fuchsia-400/5 px-4 py-2 text-xs font-medium uppercase tracking-[0.2em] text-fuchsia-300">
               <Sparkles className="h-3.5 w-3.5" />
@@ -108,26 +272,50 @@ export default function WhatIDoSection() {
             managing data, and connecting everything into a complete
             application.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Capabilities */}
-        <div className="mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {/* --------------------------------
+            Capabilities
+        --------------------------------- */}
+
+        <motion.div
+          variants={capabilitiesContainerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.12 }}
+          className="mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-3"
+        >
           {capabilities.map((item) => {
             const Icon = item.icon;
 
             return (
-              <article
+              <motion.article
                 key={item.number}
-                className="group relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-7 transition-all duration-500 hover:-translate-y-2 hover:border-white/15 hover:bg-white/[0.05]"
+                variants={capabilityVariants}
+                whileHover={{
+                  y: -8,
+                }}
+                className="group relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-7 transition-all duration-500 hover:border-white/15 hover:bg-white/[0.05]"
               >
                 {/* Hover Glow */}
+
                 <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-violet-500/10 blur-3xl transition-all duration-500 group-hover:bg-violet-500/20" />
 
                 {/* Top */}
+
                 <div className="relative flex items-center justify-between">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500/15 to-cyan-500/10 text-violet-300 ring-1 ring-white/10 transition-all duration-300 group-hover:from-violet-500/25 group-hover:to-cyan-500/20">
+                  <motion.div
+                    whileHover={{
+                      scale: 1.08,
+                      rotate: 4,
+                    }}
+                    transition={{
+                      duration: 0.25,
+                    }}
+                    className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500/15 to-cyan-500/10 text-violet-300 ring-1 ring-white/10 transition-all duration-300 group-hover:from-violet-500/25 group-hover:to-cyan-500/20"
+                  >
                     <Icon className="h-5 w-5" />
-                  </div>
+                  </motion.div>
 
                   <span className="font-mono text-xs text-slate-600">
                     {item.number}
@@ -135,6 +323,7 @@ export default function WhatIDoSection() {
                 </div>
 
                 {/* Content */}
+
                 <div className="relative mt-7">
                   <h3 className="text-xl font-bold text-white">{item.title}</h3>
 
@@ -144,29 +333,51 @@ export default function WhatIDoSection() {
                 </div>
 
                 {/* Technologies */}
-                <div className="relative mt-7 flex flex-wrap gap-2">
+
+                <motion.div
+                  variants={technologyContainerVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
+                  className="relative mt-7 flex flex-wrap gap-2"
+                >
                   {item.technologies.map((technology) => (
-                    <span
+                    <motion.span
                       key={technology}
+                      variants={technologyVariants}
                       className="rounded-full border border-white/10 bg-black/10 px-2.5 py-1 text-[10px] font-medium text-slate-500 transition-colors duration-300 group-hover:text-slate-400"
                     >
                       {technology}
-                    </span>
+                    </motion.span>
                   ))}
-                </div>
+                </motion.div>
 
                 {/* Bottom Accent */}
+
                 <div className="absolute bottom-0 left-7 right-7 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent transition-all duration-500 group-hover:via-violet-400/40" />
-              </article>
+              </motion.article>
             );
           })}
-        </div>
+        </motion.div>
 
-        {/* Philosophy Block */}
-        <div className="mt-20 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.025]">
+        {/* --------------------------------
+            Philosophy Block
+        --------------------------------- */}
+
+        <motion.div
+          variants={philosophyVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          className="mt-20 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.025]"
+        >
           <div className="grid lg:grid-cols-[1fr_1fr]">
             {/* Left */}
-            <div className="relative p-8 sm:p-10 lg:p-12">
+
+            <motion.div
+              variants={philosophyContentVariants}
+              className="relative p-8 sm:p-10 lg:p-12"
+            >
               <div className="absolute left-0 top-0 h-full w-px bg-gradient-to-b from-transparent via-violet-500/40 to-transparent" />
 
               <p className="text-xs font-medium uppercase tracking-[0.2em] text-violet-300">
@@ -194,14 +405,24 @@ export default function WhatIDoSection() {
                 See what I&apos;ve built
                 <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
               </Link>
-            </div>
+            </motion.div>
 
             {/* Right */}
-            <div className="border-t border-white/10 bg-white/[0.02] p-8 sm:p-10 lg:border-l lg:border-t-0 lg:p-12">
+
+            <motion.div
+              variants={philosophyContentVariants}
+              className="border-t border-white/10 bg-white/[0.02] p-8 sm:p-10 lg:border-l lg:border-t-0 lg:p-12"
+            >
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-400/10 text-cyan-300">
+                <motion.div
+                  whileHover={{
+                    scale: 1.08,
+                    rotate: 5,
+                  }}
+                  className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-400/10 text-cyan-300"
+                >
                   <Check className="h-5 w-5" />
-                </div>
+                </motion.div>
 
                 <div>
                   <p className="text-sm font-semibold text-white">
@@ -214,10 +435,19 @@ export default function WhatIDoSection() {
                 </div>
               </div>
 
-              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {/* Principles */}
+
+              <motion.div
+                variants={principlesContainerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                className="mt-8 grid gap-4 sm:grid-cols-2"
+              >
                 {principles.map((principle) => (
-                  <div
+                  <motion.div
                     key={principle}
+                    variants={principleVariants}
                     className="flex items-start gap-3 text-sm text-slate-400"
                   >
                     <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-violet-500/10 text-violet-300">
@@ -225,15 +455,24 @@ export default function WhatIDoSection() {
                     </span>
 
                     <span>{principle}</span>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Bottom CTA */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-5 rounded-2xl border border-white/10 bg-gradient-to-r from-violet-500/[0.06] to-cyan-500/[0.06] p-6 text-center sm:flex-row sm:text-left">
+        {/* --------------------------------
+            Bottom CTA
+        --------------------------------- */}
+
+        <motion.div
+          variants={ctaVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="mt-12 flex flex-col items-center justify-between gap-5 rounded-2xl border border-white/10 bg-gradient-to-r from-violet-500/[0.06] to-cyan-500/[0.06] p-6 text-center sm:flex-row sm:text-left"
+        >
           <div>
             <p className="text-sm font-semibold text-white">
               Have an idea worth building?
@@ -251,7 +490,7 @@ export default function WhatIDoSection() {
             Start a conversation
             <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </Link>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
