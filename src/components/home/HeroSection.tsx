@@ -18,11 +18,11 @@ const technologies = ["Next.js", "TypeScript", "React", "Node.js", "MongoDB"];
 
 const stats = [
   {
-    value: "01+",
+    value: "03+",
     label: "Years Learning",
   },
   {
-    value: "10+",
+    value: "20+",
     label: "Projects Built",
   },
   {
@@ -102,7 +102,7 @@ export default function HeroSection() {
                 Full Stack Web Developer
               </p>
 
-              <h1 className="text-[clamp(3.5rem,8vw,6.8rem)] font-black leading-[0.88] tracking-[-0.055em]">
+              <h1 className="text-[clamp(2.7rem,5.8vw,4.8rem)] font-black leading-[0.88] tracking-[-0.055em]">
                 Building
                 <span className="block bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">
                   Digital
@@ -112,7 +112,7 @@ export default function HeroSection() {
             </div>
 
             {/* Description */}
-            <p className="mt-8 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg sm:leading-8">
+            <p className="mt-8 max-w-2xl text-base leading-7 text-white sm:text-lg sm:leading-8">
               I design and develop modern web applications that combine
               thoughtful user experiences, clean architecture and reliable
               performance.
@@ -276,7 +276,7 @@ export default function HeroSection() {
                   <div className="flex items-center gap-4">
                     <div className="relative">
                       <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500 to-cyan-500 text-xl font-black shadow-lg shadow-violet-500/20">
-                        NH
+                        NU
                       </div>
 
                       <span className="absolute -bottom-1 -right-1 h-4 w-4 rounded-full border-2 border-[#0b0d14] bg-emerald-400" />
@@ -284,7 +284,7 @@ export default function HeroSection() {
 
                     <div>
                       <h2 className="text-lg font-bold text-white">
-                        Najim Uddin Helal
+                        Najim Uddin
                       </h2>
 
                       <p className="mt-1 text-sm text-slate-500">

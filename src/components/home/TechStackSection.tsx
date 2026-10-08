@@ -69,6 +69,12 @@ const techStack = [
         short: "SC",
         className: "from-violet-500/20 to-violet-500/5",
       },
+      {
+        name: "Framer Motion",
+        level: "Comfortable",
+        short: "FR",
+        className: "from-violet-500/20 to-violet-500/5",
+      },
     ],
   },
   {
@@ -117,6 +123,18 @@ const techStack = [
         name: "Mongoose",
         level: "Strong",
         short: "MG",
+        className: "from-red-500/20 to-red-500/5",
+      },
+      {
+        name: "PostgreSQL",
+        level: "Strong",
+        short: "PG",
+        className: "from-red-500/20 to-red-500/5",
+      },
+      {
+        name: "MySQL",
+        level: "Strong",
+        short: "MY",
         className: "from-red-500/20 to-red-500/5",
       },
     ],
