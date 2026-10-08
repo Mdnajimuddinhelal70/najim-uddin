@@ -1,8 +1,10 @@
 "use client";
 
+import emailjs from "@emailjs/browser";
 import { motion, type Variants } from "framer-motion";
 import {
   ArrowUpRight,
+  Loader2,
   Mail,
   MapPin,
   MessageCircle,
@@ -10,14 +12,16 @@ import {
   Sparkles,
 } from "lucide-react";
 import Link from "next/link";
+import { useRef, useState } from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { toast } from "sonner";
 
 const contactItems = [
   {
     icon: Mail,
     title: "Email",
-    value: "your-email@example.com",
-    href: "mailto:your-email@example.com",
+    value: "najimuddin77288@gmail.com",
+    href: "mailto:najimuddin77288@gmail.com",
   },
   {
     icon: MapPin,
@@ -31,7 +35,7 @@ const socialLinks = [
   {
     icon: FaGithub,
     label: "GitHub",
-    href: "https://github.com/",
+    href: "https://github.com/Mdnajimuddinhelal70",
   },
   {
     icon: FaLinkedin,
@@ -179,6 +183,47 @@ const bottomCtaVariants: Variants = {
 };
 
 export default function ContactSection() {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [isSending, setIsSending] = useState(false);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!formRef.current) return;
+
+    setIsSending(true);
+
+    try {
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error("EmailJS environment variables are missing.");
+      }
+
+      await emailjs.sendForm(serviceId, templateId, formRef.current, publicKey);
+
+      toast.success("Message sent successfully!", {
+        description:
+          "Thank you for reaching out. I’ll get back to you as soon as possible.",
+        duration: 5000,
+      });
+
+      formRef.current.reset();
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+
+      toast.error("Failed to send message.", {
+        description:
+          "Something went wrong. Please try again or contact me directly by email.",
+        duration: 5000,
+      });
+    } finally {
+      setIsSending(false);
+    }
+  };
+
   return (
     <section
       id="contact"
@@ -234,7 +279,6 @@ export default function ContactSection() {
             <div className="absolute -right-20 -top-20 h-60 w-60 rounded-full bg-violet-500/10 blur-[100px]" />
 
             <div className="relative">
-              {/* Icon */}
               <motion.div
                 initial={{ scale: 0, rotate: -15 }}
                 whileInView={{ scale: 1, rotate: 0 }}
@@ -356,6 +400,8 @@ export default function ContactSection() {
               </div>
 
               <motion.form
+                ref={formRef}
+                onSubmit={handleSubmit}
                 variants={formContainerVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -379,7 +425,8 @@ export default function ContactSection() {
                       id="name"
                       name="name"
                       type="text"
-                      placeholder="John Doe"
+                      required
+                      placeholder="Your Name"
                       className="h-12 w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 text-sm text-white outline-none placeholder:text-slate-600 transition-all duration-300 focus:border-violet-400/40 focus:bg-white/[0.06] focus:ring-1 focus:ring-violet-400/20"
                     />
                   </div>
@@ -396,7 +443,8 @@ export default function ContactSection() {
                       id="email"
                       name="email"
                       type="email"
-                      placeholder="john@example.com"
+                      required
+                      placeholder="Your Email"
                       className="h-12 w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 text-sm text-white outline-none placeholder:text-slate-600 transition-all duration-300 focus:border-violet-400/40 focus:bg-white/[0.06] focus:ring-1 focus:ring-violet-400/20"
                     />
                   </div>
@@ -415,6 +463,7 @@ export default function ContactSection() {
                     id="subject"
                     name="subject"
                     type="text"
+                    required
                     placeholder="Let's build something together"
                     className="h-12 w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 text-sm text-white outline-none placeholder:text-slate-600 transition-all duration-300 focus:border-violet-400/40 focus:bg-white/[0.06] focus:ring-1 focus:ring-violet-400/20"
                   />
@@ -433,6 +482,7 @@ export default function ContactSection() {
                     id="message"
                     name="message"
                     rows={6}
+                    required
                     placeholder="Tell me a little about your project..."
                     className="w-full resize-none rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white outline-none placeholder:text-slate-600 transition-all duration-300 focus:border-violet-400/40 focus:bg-white/[0.06] focus:ring-1 focus:ring-violet-400/20"
                   />
@@ -442,16 +492,22 @@ export default function ContactSection() {
                 <motion.div variants={formItemVariants}>
                   <motion.button
                     type="submit"
-                    whileHover={{
-                      scale: 1.01,
-                    }}
-                    whileTap={{
-                      scale: 0.98,
-                    }}
-                    className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-violet-500 to-fuchsia-500 px-6 text-sm font-semibold text-white shadow-lg shadow-violet-950/20 transition-all duration-300 hover:from-violet-400 hover:to-fuchsia-400 hover:shadow-violet-900/30"
+                    disabled={isSending}
+                    whileHover={!isSending ? { scale: 1.01 } : undefined}
+                    whileTap={!isSending ? { scale: 0.98 } : undefined}
+                    className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-violet-500 to-fuchsia-500 px-6 text-sm font-semibold text-white shadow-lg shadow-violet-950/20 transition-all duration-300 hover:from-violet-400 hover:to-fuchsia-400 hover:shadow-violet-900/30 disabled:cursor-not-allowed disabled:opacity-70"
                   >
-                    Send Message
-                    <Send className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5" />
+                    {isSending ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        Send Message
+                        <Send className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5" />
+                      </>
+                    )}
                   </motion.button>
                 </motion.div>
               </motion.form>
@@ -472,10 +528,10 @@ export default function ContactSection() {
           </p>
 
           <Link
-            href="mailto:your-email@example.com"
+            href="mailto:najimuddin77288@gmail.com"
             className="group mt-3 inline-flex items-center gap-2 text-sm font-medium text-slate-300 transition-colors duration-300 hover:text-violet-300"
           >
-            your-email@example.com
+            najimuddin77288@gmail.com
             <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </Link>
         </motion.div>

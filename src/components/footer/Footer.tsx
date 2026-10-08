@@ -18,17 +18,17 @@ const quickLinks = [
 const socialLinks = [
   {
     label: "GitHub",
-    href: "https://github.com/",
+    href: "https://github.com/Mdnajimuddinhelal70",
     icon: FaGithub,
   },
   {
     label: "LinkedIn",
-    href: "https://linkedin.com/",
+    href: "https://www.linkedin.com/in/najim-uddin-helal-7994a1363/",
     icon: FaLinkedin,
   },
   {
     label: "Email",
-    href: "mailto:your-email@example.com",
+    href: "mailto:najimuddin77288@gmail.com",
     icon: Mail,
   },
 ];

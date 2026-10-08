@@ -1,446 +1,326 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  Check,
-  Code2,
-  Globe2,
-  Layers3,
-  Mail,
-  Sparkles,
-} from "lucide-react";
+import { ArrowDown, ArrowRight, Mail, MapPin } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
-const technologies = ["Next.js", "TypeScript", "React", "Node.js", "MongoDB"];
+const techStack = ["Next.js", "React", "TypeScript", "Node.js", "MongoDB"];
 
-const stats = [
-  {
-    value: "03+",
-    label: "Years Learning",
-  },
-  {
-    value: "20+",
-    label: "Projects Built",
-  },
-  {
-    value: "100%",
-    label: "Passion",
-  },
-];
-
-export default function HeroSection() {
+const HeroSection = () => {
   return (
-    <section className="relative isolate min-h-screen overflow-hidden bg-[#050505] text-white">
+    <section
+      id="home"
+      className="relative min-h-[calc(100vh-73px)] overflow-hidden bg-[#030712] text-white"
+    >
       {/* =====================================================
-          BACKGROUND
+          PREMIUM BACKGROUND
       ====================================================== */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        {/* Top right glow */}
+        <div className="absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-rose-600/10 blur-[120px]" />
 
-      <div className="pointer-events-none absolute inset-0">
-        {/* Main radial glow */}
-        <div className="absolute left-1/2 top-[-300px] h-[700px] w-[900px] -translate-x-1/2 rounded-full bg-violet-600/[0.13] blur-[180px]" />
+        {/* Bottom left glow */}
+        <div className="absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-red-900/10 blur-[120px]" />
 
-        {/* Bottom glow */}
-        <div className="absolute bottom-[-250px] left-1/2 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-cyan-500/[0.07] blur-[180px]" />
+        {/* Center glow */}
+        <div className="absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-900/5 blur-[140px]" />
 
-        {/* Side glow */}
-        <div className="absolute right-[-200px] top-[30%] h-[500px] w-[500px] rounded-full bg-fuchsia-500/[0.07] blur-[170px]" />
+        {/* Grid */}
+        <div className="absolute inset-0 opacity-[0.035] [background-image:linear-gradient(rgba(255,255,255,0.8)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.8)_1px,transparent_1px)] [background-size:60px_60px]" />
+
+        {/* Top gradient */}
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-rose-950/10 to-transparent" />
+
+        {/* Bottom fade */}
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#030712] to-transparent" />
       </div>
-
-      {/* Grid */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.035]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.8) 1px, transparent 1px)",
-          backgroundSize: "70px 70px",
-        }}
-      />
-
-      {/* Top center light */}
-      <div className="pointer-events-none absolute left-1/2 top-0 h-px w-[600px] -translate-x-1/2 bg-gradient-to-r from-transparent via-violet-400/60 to-transparent" />
 
       {/* =====================================================
           CONTENT
       ====================================================== */}
-
-      <div className="relative mx-auto flex min-h-screen max-w-7xl items-center px-6 py-28 sm:px-8 lg:px-10">
-        <div className="grid w-full items-center gap-20 lg:grid-cols-[1.05fr_0.95fr]">
+      <div className="relative z-10 mx-auto flex min-h-[calc(100vh-73px)] max-w-7xl items-center px-6 py-16 sm:px-8 lg:px-10 lg:py-20">
+        <div className="grid w-full items-center gap-16 lg:grid-cols-[1.08fr_0.92fr] lg:gap-20">
           {/* =================================================
               LEFT CONTENT
           ================================================== */}
-
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -35 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{
               duration: 0.8,
               ease: "easeOut",
             }}
+            className="max-w-3xl"
           >
-            {/* Eyebrow */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.15, duration: 0.5 }}
-              className="mb-7 flex items-center gap-3"
-            >
-              <span className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-xs font-medium text-slate-300 backdrop-blur-xl">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute h-full w-full animate-ping rounded-full bg-emerald-400 opacity-70" />
-                  <span className="relative h-2 w-2 rounded-full bg-emerald-400" />
-                </span>
-                Available for new opportunities
+            {/* Availability */}
+            <div className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 backdrop-blur-sm">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-40" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400" />
               </span>
-            </motion.div>
+
+              <span className="text-xs font-medium tracking-wide text-slate-300">
+                Available for opportunities
+              </span>
+            </div>
 
             {/* Heading */}
-            <div className="max-w-4xl">
-              <p className="mb-3 text-sm font-medium uppercase tracking-[0.3em] text-violet-400">
-                Full Stack Web Developer
-              </p>
-
-              <h1 className="text-[clamp(2.7rem,5.8vw,4.8rem)] font-black leading-[0.88] tracking-[-0.055em]">
-                Building
-                <span className="block bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">
-                  Digital
+            <h1 className="text-4xl font-bold leading-[1.08] tracking-[-0.03em] text-white sm:text-5xl md:text-6xl lg:text-[4.35rem]">
+              Building digital
+              <br />
+              experiences that{" "}
+              <span className="relative inline-block">
+                <span className="bg-gradient-to-r from-cyan-400 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+                  matter.
                 </span>
-                <span className="block text-slate-100">Experiences.</span>
-              </h1>
-            </div>
+
+                {/* Under glow */}
+                <span className="absolute -bottom-1 left-0 h-3 w-full bg-rose-500/20 blur-xl" />
+              </span>
+            </h1>
 
             {/* Description */}
-            <p className="mt-8 max-w-2xl text-base leading-7 text-white sm:text-lg sm:leading-8">
-              I design and develop modern web applications that combine
-              thoughtful user experiences, clean architecture and reliable
-              performance.
+            <p className="mt-7 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg sm:leading-8">
+              I&apos;m{" "}
+              <span className="font-semibold text-slate-200">Najim Uddin</span>,
+              a Full Stack Web Developer focused on building modern, scalable,
+              and user-friendly web applications with clean code and thoughtful
+              design.
             </p>
 
-            {/* Technologies */}
-            <div className="mt-8 flex flex-wrap items-center gap-2">
-              {technologies.map((technology, index) => (
-                <motion.span
-                  key={technology}
-                  initial={{
-                    opacity: 0,
-                    y: 8,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  transition={{
-                    delay: 0.3 + index * 0.05,
-                    duration: 0.4,
-                  }}
-                  className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3.5 py-2 text-xs font-medium text-slate-400 transition duration-300 hover:border-violet-400/30 hover:bg-violet-500/[0.08] hover:text-white"
-                >
-                  {technology}
-                </motion.span>
-              ))}
-            </div>
-
             {/* CTA */}
-            <div className="mt-9 flex flex-wrap items-center gap-3">
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="#projects"
-                className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-black transition duration-300 hover:scale-[1.03] hover:bg-slate-100 sm:px-7 sm:py-4"
+                className="group inline-flex items-center justify-center gap-2 rounded-lg bg-white px-6 py-3.5 text-sm font-semibold text-slate-950 shadow-xl shadow-black/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-rose-500 hover:text-white hover:shadow-rose-500/20"
               >
-                Explore My Work
+                View My Work
                 <ArrowRight
-                  size={17}
+                  size={18}
                   className="transition-transform duration-300 group-hover:translate-x-1"
                 />
               </Link>
 
               <Link
                 href="#contact"
-                className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-6 py-3.5 text-sm font-semibold text-slate-200 backdrop-blur-xl transition duration-300 hover:border-white/20 hover:bg-white/[0.08] sm:px-7 sm:py-4"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-6 py-3.5 text-sm font-semibold text-slate-200 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-rose-400/30 hover:bg-rose-500/10 hover:text-white"
               >
                 Let&apos;s Talk
-                <Mail
-                  size={17}
-                  className="transition-transform duration-300 group-hover:rotate-6"
-                />
+                <Mail size={17} />
               </Link>
             </div>
 
-            {/* Socials */}
-            <div className="mt-8 flex items-center gap-3">
-              <Link
-                href="#"
-                aria-label="GitHub"
-                className="group rounded-full border border-white/10 bg-white/[0.03] p-3 text-slate-400 transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
-              >
-                <FaGithub
-                  size={18}
-                  className="transition-transform duration-300 group-hover:scale-110"
-                />
-              </Link>
-
-              <Link
-                href="#"
-                aria-label="LinkedIn"
-                className="group rounded-full border border-white/10 bg-white/[0.03] p-3 text-slate-400 transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
-              >
-                <FaLinkedin
-                  size={18}
-                  className="transition-transform duration-300 group-hover:scale-110"
-                />
-              </Link>
-
-              <span className="ml-2 h-px w-10 bg-white/10" />
-
-              <span className="text-xs text-slate-600">
-                Based in Bangladesh
+            {/* Social Links */}
+            <div className="mt-9 flex items-center gap-4">
+              <span className="text-xs font-medium uppercase tracking-[0.18em] text-slate-600">
+                Find me on
               </span>
-            </div>
 
-            {/* Stats */}
-            <div className="mt-10 flex flex-wrap items-center gap-7 border-t border-white/[0.07] pt-7">
-              {stats.map((stat) => (
-                <div key={stat.label}>
-                  <p className="text-xl font-bold text-white">{stat.value}</p>
+              <div className="h-px w-8 bg-white/10" />
 
-                  <p className="mt-1 text-[11px] uppercase tracking-wider text-slate-600">
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
+              <Link
+                href="https://github.com/Mdnajimuddinhelal70"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="rounded-lg border border-transparent p-2 text-slate-500 transition-all duration-300 hover:border-white/10 hover:bg-white/5 hover:text-white"
+              >
+                <FaGithub size={19} />
+              </Link>
+
+              <Link
+                href="https://www.linkedin.com/in/najimuddin-helal-70/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="rounded-lg border border-transparent p-2 text-slate-500 transition-all duration-300 hover:border-white/10 hover:bg-white/5 hover:text-white"
+              >
+                <FaLinkedin size={19} />
+              </Link>
             </div>
           </motion.div>
 
           {/* =================================================
-              RIGHT VISUAL
+              RIGHT PREMIUM PROFILE
           ================================================== */}
-
           <motion.div
-            initial={{
-              opacity: 0,
-              x: 50,
-              scale: 0.95,
-            }}
-            animate={{
-              opacity: 1,
-              x: 0,
-              scale: 1,
-            }}
+            initial={{ opacity: 0, x: 35, scale: 0.96 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
             transition={{
-              duration: 1,
-              delay: 0.2,
+              duration: 0.9,
+              delay: 0.15,
               ease: "easeOut",
             }}
-            className="relative hidden lg:block"
+            className="relative mx-auto w-full max-w-[440px] lg:ml-auto"
           >
-            {/* Large Glow */}
-            <div className="absolute -inset-16 rounded-full bg-violet-500/[0.08] blur-[100px]" />
+            {/* Outer glow */}
+            <div className="absolute -inset-6 rounded-[3rem] bg-rose-500/10 blur-3xl" />
 
-            {/* Decorative Circle */}
-            <div className="absolute left-1/2 top-1/2 h-[470px] w-[470px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/[0.04]" />
+            {/* Decorative ring */}
+            <div className="absolute -inset-3 rounded-[2.6rem] border border-white/[0.04]" />
 
-            <div className="absolute left-1/2 top-1/2 h-[390px] w-[390px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-violet-400/[0.12]" />
+            {/* Main profile card */}
+            <div className="relative rounded-[2.25rem] border border-white/10 bg-white/[0.035] p-3 shadow-2xl shadow-black/40 backdrop-blur-xl sm:p-4">
+              {/* Image frame */}
+              <div className="group relative overflow-hidden rounded-[1.7rem] border border-white/10 bg-slate-950">
+                <div className="relative aspect-[4/4.8] w-full">
+                  <Image
+                    src="https://res.cloudinary.com/dpgjlcycl/image/upload/v1776686393/myPic1.jpeg-1776686389686.jpg"
+                    alt="Najim Uddin - Full Stack Web Developer"
+                    fill
+                    priority
+                    sizes="(max-width: 640px) 90vw, (max-width: 1024px) 60vw, 440px"
+                    className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.025]"
+                  />
 
-            {/* Main Card */}
-            <motion.div
-              animate={{
-                y: [0, -10, 0],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="relative mx-auto w-full max-w-[470px]"
-            >
-              <div className="relative overflow-hidden rounded-[32px] border border-white/[0.1] bg-[#0b0d14]/90 shadow-[0_40px_120px_rgba(0,0,0,0.55)] backdrop-blur-2xl">
-                {/* Card top */}
-                <div className="flex items-center justify-between border-b border-white/[0.07] px-6 py-5">
-                  <div className="flex items-center gap-2">
-                    <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/80" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-green-400/80" />
-                  </div>
+                  {/* Premium image overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
 
-                  <span className="text-[11px] font-medium text-slate-600">
-                    portfolio.tsx
-                  </span>
+                  {/* Soft rose glow */}
+                  <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-rose-950/30 to-transparent" />
 
-                  <Code2 size={16} className="text-violet-400" />
-                </div>
+                  {/* Image content */}
+                  <div className="absolute inset-x-5 bottom-5">
+                    <div className="rounded-2xl border border-white/10 bg-black/30 p-4 backdrop-blur-md">
+                      <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-rose-300/80">
+                        Full Stack Developer
+                      </p>
 
-                {/* Main card */}
-                <div className="p-7">
-                  {/* Profile */}
-                  <div className="flex items-center gap-4">
-                    <div className="relative">
-                      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500 to-cyan-500 text-xl font-black shadow-lg shadow-violet-500/20">
-                        NU
-                      </div>
-
-                      <span className="absolute -bottom-1 -right-1 h-4 w-4 rounded-full border-2 border-[#0b0d14] bg-emerald-400" />
-                    </div>
-
-                    <div>
-                      <h2 className="text-lg font-bold text-white">
+                      <h2 className="mt-1 text-xl font-semibold tracking-tight text-white">
                         Najim Uddin
                       </h2>
-
-                      <p className="mt-1 text-sm text-slate-500">
-                        Full Stack Web Developer
-                      </p>
                     </div>
-                  </div>
-
-                  {/* Divider */}
-                  <div className="my-7 h-px bg-white/[0.06]" />
-
-                  {/* Code */}
-                  <div className="space-y-3 font-mono text-[12px] leading-6 sm:text-[13px]">
-                    <div>
-                      <span className="text-violet-400">const</span>{" "}
-                      <span className="text-cyan-300">mindset</span>{" "}
-                      <span className="text-slate-600">=</span>{" "}
-                      <span className="text-yellow-300">{"{"}</span>
-                    </div>
-
-                    <div className="pl-5">
-                      <span className="text-slate-500">curiosity:</span>{" "}
-                      <span className="text-emerald-300">true</span>
-                      <span className="text-slate-600">,</span>
-                    </div>
-
-                    <div className="pl-5">
-                      <span className="text-slate-500">cleanCode:</span>{" "}
-                      <span className="text-emerald-300">true</span>
-                      <span className="text-slate-600">,</span>
-                    </div>
-
-                    <div className="pl-5">
-                      <span className="text-slate-500">problemSolving:</span>{" "}
-                      <span className="text-emerald-300">true</span>
-                      <span className="text-slate-600">,</span>
-                    </div>
-
-                    <div className="pl-5">
-                      <span className="text-slate-500">learning:</span>{" "}
-                      <span className="text-emerald-300">
-                        &quot;always&quot;
-                      </span>
-                      <span className="text-slate-600">,</span>
-                    </div>
-
-                    <div>
-                      <span className="text-yellow-300">{"}"}</span>
-                    </div>
-                  </div>
-
-                  {/* Skills */}
-                  <div className="mt-7 grid grid-cols-2 gap-3">
-                    <div className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-4">
-                      <Layers3 size={18} className="text-violet-400" />
-
-                      <p className="mt-3 text-xs font-semibold text-white">
-                        Scalable
-                      </p>
-
-                      <p className="mt-1 text-[11px] text-slate-600">
-                        Architecture
-                      </p>
-                    </div>
-
-                    <div className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-4">
-                      <Globe2 size={18} className="text-cyan-400" />
-
-                      <p className="mt-3 text-xs font-semibold text-white">
-                        Modern
-                      </p>
-
-                      <p className="mt-1 text-[11px] text-slate-600">
-                        Web Experience
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Bottom status */}
-                  <div className="mt-5 flex items-center justify-between rounded-2xl border border-emerald-400/10 bg-emerald-400/[0.035] px-4 py-3">
-                    <div className="flex items-center gap-2">
-                      <div className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-400/10">
-                        <Check size={12} className="text-emerald-400" />
-                      </div>
-
-                      <span className="text-[11px] text-slate-400">
-                        Ready to build
-                      </span>
-                    </div>
-
-                    <ArrowUpRight size={15} className="text-slate-600" />
                   </div>
                 </div>
               </div>
 
-              {/* Floating card - top */}
-              <motion.div
-                animate={{
-                  y: [0, 8, 0],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute -right-7 -top-7 rounded-2xl border border-white/10 bg-[#10131c]/90 px-4 py-3 shadow-2xl backdrop-blur-xl"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="rounded-xl bg-violet-500/10 p-2">
-                    <Sparkles size={16} className="text-violet-400" />
-                  </div>
-
+              {/* Card information */}
+              <div className="px-2 pb-1 pt-5 sm:px-2">
+                <div className="flex items-center justify-between">
+                  {/* Location */}
                   <div>
-                    <p className="text-[10px] uppercase tracking-wider text-slate-600">
-                      Quality
+                    <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-slate-600">
+                      Based in
                     </p>
 
-                    <p className="text-xs font-semibold text-slate-200">
-                      Crafted with care
+                    <div className="mt-1.5 flex items-center gap-1.5 text-sm font-medium text-slate-300">
+                      <MapPin size={14} className="text-rose-400" />
+                      Bangladesh
+                    </div>
+                  </div>
+
+                  {/* Role */}
+                  <div className="text-right">
+                    <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-slate-600">
+                      Focus
+                    </p>
+
+                    <p className="mt-1.5 text-sm font-medium text-slate-300">
+                      Web Development
                     </p>
                   </div>
                 </div>
-              </motion.div>
 
-              {/* Floating card - bottom */}
-              <motion.div
-                animate={{
-                  y: [0, -7, 0],
-                }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute -bottom-7 -left-7 rounded-2xl border border-white/10 bg-[#10131c]/90 px-4 py-3 shadow-2xl backdrop-blur-xl"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="rounded-xl bg-cyan-500/10 p-2">
-                    <Code2 size={16} className="text-cyan-400" />
-                  </div>
-
-                  <div>
-                    <p className="text-[10px] uppercase tracking-wider text-slate-600">
-                      Stack
-                    </p>
-
-                    <p className="text-xs font-semibold text-slate-200">
-                      Modern Technologies
-                    </p>
-                  </div>
+                {/* Technologies */}
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {techStack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded-md border border-white/[0.06] bg-white/[0.035] px-2.5 py-1.5 text-[11px] font-medium text-slate-500 transition-all duration-300 hover:border-rose-400/20 hover:bg-rose-500/10 hover:text-rose-300"
+                    >
+                      {tech}
+                    </span>
+                  ))}
                 </div>
-              </motion.div>
+              </div>
+            </div>
+
+            {/* =================================================
+                FLOATING NU BADGE
+            ================================================== */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: 0.9,
+                ease: "easeOut",
+              }}
+              className="absolute -left-5 top-20 hidden sm:block"
+            >
+              <div className="rounded-2xl border border-white/10 bg-[#0b1120]/90 p-2 shadow-xl shadow-black/30 backdrop-blur-xl">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-r from-cyan-400 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent text-white shadow-lg shadow-rose-900/30">
+                  NU
+                </div>
+              </div>
             </motion.div>
+
+            {/* =================================================
+                FLOATING CODE BADGE
+            ================================================== */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: 1.05,
+                ease: "easeOut",
+              }}
+              className="absolute -right-5 bottom-32 hidden sm:block"
+            >
+              <div className="rounded-xl border border-white/10 bg-[#0b1120]/90 px-3.5 py-2.5 shadow-xl shadow-black/30 backdrop-blur-xl">
+                <span className="font-mono text-xs font-semibold text-rose-400">
+                  {"<code />"}
+                </span>
+              </div>
+            </motion.div>
+
+            {/* Small decorative dot */}
+            <div className="absolute -right-2 -top-2 h-4 w-4 rounded-full border-2 border-[#030712] bg-rose-400 shadow-lg shadow-rose-500/40" />
           </motion.div>
         </div>
+
+        {/* =================================================
+            SCROLL INDICATOR
+        ================================================== */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{
+            duration: 0.8,
+            delay: 1.3,
+            ease: "easeOut",
+          }}
+          className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 lg:block"
+        >
+          <Link
+            href="#about"
+            aria-label="Scroll to About section"
+            className="group flex flex-col items-center gap-2 text-slate-600 transition-colors duration-300 hover:text-slate-300"
+          >
+            <span className="text-[9px] font-medium uppercase tracking-[0.3em]">
+              Scroll to explore
+            </span>
+
+            <span className="flex h-9 w-6 items-start justify-center rounded-full border border-white/10 p-1.5">
+              <motion.span
+                animate={{ y: [0, 7, 0] }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <ArrowDown size={12} />
+              </motion.span>
+            </span>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
-}
+};
+
+export default HeroSection;
