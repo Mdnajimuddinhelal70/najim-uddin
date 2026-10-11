@@ -6,6 +6,7 @@ import {
   ArrowRight,
   CheckCircle2,
   Code2,
+  Download,
   ExternalLink,
   MapPin,
   Sparkles,
@@ -78,19 +79,14 @@ const HeroSection = () => {
       id="home"
       className="relative min-h-[calc(100vh-73px)] overflow-hidden bg-[#030712] text-white"
     >
-      {/* =====================================================
-          PREMIUM BACKGROUND
-      ====================================================== */}
-
+      {/* PREMIUM BACKGROUND */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        {/* Main atmospheric glow */}
         <div className="absolute -left-40 top-20 h-[420px] w-[420px] rounded-full bg-violet-600/[0.07] blur-[130px]" />
 
         <div className="absolute -right-40 top-0 h-[520px] w-[520px] rounded-full bg-cyan-500/[0.06] blur-[150px]" />
 
         <div className="absolute bottom-[-180px] left-1/2 h-[420px] w-[620px] -translate-x-1/2 rounded-full bg-fuchsia-600/[0.035] blur-[150px]" />
 
-        {/* Fine grid */}
         <div
           className="absolute inset-0 opacity-[0.025]"
           style={{
@@ -100,26 +96,17 @@ const HeroSection = () => {
           }}
         />
 
-        {/* Top fade */}
         <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-violet-950/10 to-transparent" />
 
-        {/* Bottom fade */}
         <div className="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-[#030712] to-transparent" />
 
-        {/* Center vertical line */}
         <div className="absolute left-1/2 top-0 hidden h-full w-px bg-white/[0.025] lg:block" />
       </div>
 
-      {/* =====================================================
-          MAIN CONTENT
-      ====================================================== */}
-
+      {/* MAIN CONTENT */}
       <div className="relative z-10 mx-auto flex min-h-[calc(100vh-73px)] max-w-7xl items-center px-6 py-16 sm:px-8 lg:px-10 lg:py-20">
         <div className="grid w-full items-center gap-16 lg:grid-cols-[1.08fr_0.92fr] lg:gap-20">
-          {/* =================================================
-              LEFT CONTENT
-          ================================================== */}
-
+          {/* LEFT CONTENT */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -133,7 +120,6 @@ const HeroSection = () => {
             >
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-40" />
-
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
               </span>
 
@@ -148,7 +134,6 @@ const HeroSection = () => {
               className="mb-5 flex items-center gap-3 text-sm text-slate-500"
             >
               <span className="h-px w-8 bg-slate-700" />
-
               <span className="font-medium">Hello, I&apos;m Najim Uddin</span>
             </motion.div>
 
@@ -163,7 +148,6 @@ const HeroSection = () => {
                 <span className="bg-gradient-to-r from-cyan-300 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
                   experiences
                 </span>
-
                 <span className="absolute -bottom-1 left-0 h-4 w-full bg-violet-500/10 blur-2xl" />
               </span>
               <br />
@@ -180,11 +164,12 @@ const HeroSection = () => {
               architecture, thoughtful interfaces, and reliable backend systems.
             </motion.p>
 
-            {/* CTA */}
+            {/* CTA BUTTONS */}
             <motion.div
               variants={fadeUpVariants}
-              className="mt-9 flex flex-col gap-3 sm:flex-row"
+              className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap"
             >
+              {/* Projects */}
               <Link
                 href="#projects"
                 className="group inline-flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-slate-950 shadow-2xl shadow-white/5 transition-all duration-300 hover:-translate-y-1 hover:bg-slate-100"
@@ -196,6 +181,7 @@ const HeroSection = () => {
                 />
               </Link>
 
+              {/* Contact */}
               <Link
                 href="#contact"
                 className="group inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.035] px-6 py-3.5 text-sm font-semibold text-slate-200 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-violet-400/30 hover:bg-violet-500/[0.08]"
@@ -205,6 +191,19 @@ const HeroSection = () => {
                   size={16}
                   className="transition-transform duration-300 group-hover:translate-x-0.5"
                 />
+              </Link>
+
+              {/* Download Resume */}
+              <Link
+                href="/najim-uddin-resume.pdf"
+                download="Najim-Uddin-Resume.pdf"
+                className="group inline-flex items-center justify-center gap-2 rounded-xl border border-violet-400/25 bg-violet-500/10 px-6 py-3.5 text-sm font-semibold text-violet-200 shadow-lg shadow-violet-950/10 transition-all duration-300 hover:-translate-y-1 hover:border-violet-400/50 hover:bg-violet-500/15 hover:text-white"
+              >
+                <Download
+                  size={17}
+                  className="transition-transform duration-300 group-hover:translate-y-0.5"
+                />
+                Download Resume
               </Link>
             </motion.div>
 
@@ -264,10 +263,7 @@ const HeroSection = () => {
             </motion.div>
           </motion.div>
 
-          {/* =================================================
-              RIGHT PROFILE AREA
-          ================================================== */}
-
+          {/* RIGHT PROFILE AREA */}
           <motion.div
             variants={imageVariants}
             initial="hidden"
@@ -288,7 +284,7 @@ const HeroSection = () => {
               className="absolute -inset-8 rounded-[3rem] bg-violet-600/10 blur-[70px]"
             />
 
-            {/* Rotating decorative ring */}
+            {/* Rotating ring */}
             <motion.div
               animate={{ rotate: 360 }}
               transition={{
@@ -313,10 +309,7 @@ const HeroSection = () => {
                     className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.025]"
                   />
 
-                  {/* Dark cinematic overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-black/10" />
-
-                  {/* Subtle color wash */}
                   <div className="absolute inset-0 bg-gradient-to-br from-violet-500/[0.08] via-transparent to-cyan-400/[0.05]" />
 
                   {/* Profile label */}
@@ -384,10 +377,7 @@ const HeroSection = () => {
               </div>
             </div>
 
-            {/* =================================================
-                FLOATING CODE CARD
-            ================================================== */}
-
+            {/* FLOATING CODE CARD */}
             <motion.div
               initial={{ opacity: 0, x: 20, y: 10 }}
               animate={{ opacity: 1, x: 0, y: 0 }}
@@ -417,10 +407,7 @@ const HeroSection = () => {
               </div>
             </motion.div>
 
-            {/* =================================================
-                FLOATING AVAILABLE CARD
-            ================================================== */}
-
+            {/* FLOATING AVAILABLE CARD */}
             <motion.div
               initial={{ opacity: 0, x: -20, y: 10 }}
               animate={{ opacity: 1, x: 0, y: 0 }}
@@ -466,10 +453,7 @@ const HeroSection = () => {
           </motion.div>
         </div>
 
-        {/* =====================================================
-            SCROLL INDICATOR
-        ====================================================== */}
-
+        {/* SCROLL INDICATOR */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
