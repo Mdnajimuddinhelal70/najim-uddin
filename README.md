@@ -179,7 +179,7 @@ Make sure you have installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone <YOUR-PORTFOLIO-REPOSITORY-URL>
+git clone https://github.com/Mdnajimuddinhelal70/najim-uddin.git
 ```
 
 ### 2. Navigate to the Project Directory
@@ -289,8 +289,8 @@ I'm open to connecting with developers, collaborating on projects, and exploring
 - **Email:** [najimuddin77288@gmail.com](mailto:najimuddin77288@gmail.com)
 - **Phone:** +8801796427670
 - **GitHub:** [@Mdnajimuddinhelal70](https://github.com/Mdnajimuddinhelal70)
-- **LinkedIn:** [Add your LinkedIn profile URL here.](https://www.linkedin.com/in/najim-uddin-7994a1363/)
-- **Portfolio:** [Add your live portfolio URL here.](https://najim-uddin.vercel.app/)
+- **LinkedIn:** [https://www.linkedin.com/in/najim-uddin-7994a1363](https://www.linkedin.com/in/najim-uddin-7994a1363/)
+- **Portfolio:** [https://najim-uddin.vercel.app](https://najim-uddin.vercel.app/)
 
 ---
 
