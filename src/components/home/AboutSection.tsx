@@ -276,7 +276,7 @@ export default function AboutSection() {
                   </p>
 
                   <h3 className="mt-2 text-2xl font-bold text-white">
-                    Najim Uddin Helal
+                    Najim Uddin
                   </h3>
                 </div>
 
@@ -332,7 +332,7 @@ export default function AboutSection() {
 
               <motion.div variants={resumeVariants} className="relative mt-8">
                 <Link
-                  href="/resume"
+                  href="/resume.pdf"
                   className="group inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.05] px-5 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:border-violet-400/30 hover:bg-violet-400/10"
                 >
                   Download Resume
